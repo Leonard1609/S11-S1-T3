@@ -10,6 +10,9 @@ CREATE TABLE usuarios (
   rol VARCHAR(20)
 );
 
+INSERT INTO usuarios (usuario, password, saldo, rol)
+VALUES ('admin', '123', 5000, 'cliente');
+
 CREATE TABLE transacciones (
   id INT AUTO_INCREMENT PRIMARY KEY,
   usuario_id INT,
@@ -18,5 +21,14 @@ CREATE TABLE transacciones (
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO usuarios (usuario, password, saldo, rol)
-VALUES ('admin', '123', 5000, 'cliente');
+-- Insertar un depósito inicial
+INSERT INTO transacciones (usuario_id, tipo, monto) 
+VALUES (1, 'deposito', 500.00);
+
+-- Insertar un retiro
+INSERT INTO transacciones (usuario_id, tipo, monto) 
+VALUES (1, 'retiro', 150.50);
+
+-- Insertar otro depósito
+INSERT INTO transacciones (usuario_id, tipo, monto) 
+VALUES (1, 'deposito', 2000.00);
